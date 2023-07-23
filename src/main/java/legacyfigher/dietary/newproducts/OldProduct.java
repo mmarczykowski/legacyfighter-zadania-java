@@ -1,8 +1,11 @@
 package legacyfigher.dietary.newproducts;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Data
 public class OldProduct {
 
     UUID serialNumber = UUID.randomUUID();
@@ -15,12 +18,10 @@ public class OldProduct {
     Integer counter;
 
 
-
-    void decrementCounter() {
+    public void decrementCounter() {
         if (price != null && price.signum() > 0) {
 
-            if
-            (counter == null) {
+            if (counter == null) {
                 throw new IllegalStateException("null counter");
             }
             counter = counter - 1;
@@ -41,18 +42,16 @@ public class OldProduct {
         this.counter = counter;
     }
 
-    void incrementCounter() {
+    public void incrementCounter() {
         if (price != null && price.signum() > 0) {
             if (counter == null) {
                 throw new IllegalStateException("null counter");
             }
-            if (counter +1 < 0) {
+            if (counter + 1 < 0) {
                 throw new IllegalStateException("Negative counter");
             }
             counter = counter + 1;
-
-        }
-        else {
+        } else {
             throw new IllegalStateException("Invalid price");
 
         }
@@ -62,8 +61,7 @@ public class OldProduct {
         if (counter == null) {
             throw new IllegalStateException("null counter");
         }
-        if
-        (counter > 0) {
+        if (counter > 0) {
             if (newPrice == null) {
                 throw new IllegalStateException("new price null");
             }
@@ -72,9 +70,7 @@ public class OldProduct {
     }
 
     void replaceCharFromDesc(String charToReplace, String replaceWith) {
-        if (longDesc == null || longDesc.isEmpty() ||
-
-                desc == null || desc.isEmpty()) {
+        if (longDesc == null || longDesc.isEmpty() || desc == null || desc.isEmpty()) {
             throw new IllegalStateException("null or empty desc");
         }
         longDesc = longDesc.replace(charToReplace, replaceWith);
@@ -82,10 +78,7 @@ public class OldProduct {
     }
 
     String formatDesc() {
-        if (longDesc == null ||
-                longDesc.isEmpty() ||
-                desc == null
-                || desc.isEmpty() ) {
+        if (longDesc == null || longDesc.isEmpty() || desc == null || desc.isEmpty()) {
             return "";
         }
         return desc + " *** " + longDesc;
